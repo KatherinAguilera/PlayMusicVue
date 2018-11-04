@@ -1,10 +1,11 @@
 <template lang="pug">
   #app
-    img(src='dist/logo.png')
-    h1 Play Music with VueJS
-    select(v-model="selectedCountry")
-      option(v-for="country in countries" v-bind:value="country.value") {{ country.name }}
-    spinner(v-show="loading")
+    img(src='dist/lastfm.png' class="logo")
+    h1 Mira el Top de música con Last.fm
+    div.select
+      select(v-model="selectedCountry" class="selection")
+        option(v-for="country in countries" v-bind:value="country.value" class="option") {{ country.name }}
+      spinner(v-show="loading")
     ul
       artist(v-for="artist in artists" v-bind:artist="artist" v-bind:key="artist.mbid")
 </template>
@@ -26,8 +27,12 @@ export default {
         { name: 'Argentina', value: 'argentina' },
         { name: 'Colombia', value: 'colombia' },
         { name: 'España', value: 'spain' },
+        { name: 'Peru', value: 'peru' },
+        { name: 'Bolivia', value: 'bolivia' },
+        { name: 'Mexico', value: 'mexico' },
+        { name: 'Ecuador', value: 'ecuador' },
       ],
-      selectedCountry: 'argentina',
+      selectedCountry: 'colombia',
       //al comnzar cargue el loader
       loading: true
     }
@@ -71,18 +76,84 @@ export default {
   text-align center
   color #2c3e50
   margin-top 60px
+  display flex
+  flex-direction column
+  justify-content center
+  align-items center
+  margin 0 auto
+  box-shadow 0 5px 5px 5px rgba(0,0,0,0.2);
+  max-width 800px
 
-h1, h2
-  font-weight normal
+body
+  margin 0
+  font-family Arial, Helvetica, sans-serif
 
+.logo
+  max-width 300px
+  min-width 50px
+
+h1
+  box-shadow: 0 5px 5px 5px rgba(0,0,0,0.2)
+  padding: 10px
+  border-radius: 25px 0 25px 0
+
+select {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0 0 0 0.5em;
+    color: #f39e9e;
+    cursor: pointer;
+    background: #2c3e50;
+    border: none;
+    font-size 18px
+
+}
+.option
+  border-radius 8px
+.select {
+  position: relative;
+  display: block;
+  width: 20em;
+  line-height: 2.5;
+  background: #2c3e50;
+  overflow: hidden;
+  border-radius: .25em;
+}
+.select::after
+    content '\25BC';
+    position absolute;
+    border 1px solid black 
+    top 0;
+    right 0;
+    bottom 0;
+    padding 0 1em;
+    background white;
+    pointer-events none;
 ul
   list-style-type none
   padding 0
+  display grid 
+  grid-template 1fr 1fr 1fr / 1fr 1fr 1fr
+  padding 0 20px 0 20px
 
 li
   display inline-block
   margin 0 10px
 
 a
-  color #42b983
+  color #FD1643
+  text-decoration none
+ @media screen and (max-width: 700px)
+    ul
+      display grid 
+      grid-template 1fr 1fr /  1fr 1fr
+ @media screen and (max-width: 400px)
+    ul
+      display grid 
+      grid-template 1fr  /  1fr
+    h1, h2 
+      font-size 18px
+    .bands
+      width 100%
 </style>

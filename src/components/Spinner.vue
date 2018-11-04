@@ -16,9 +16,9 @@ export default {
   height: 10em;
 }
 .loader {
-  margin: 60px auto;
+  margin: 60px 80px;
   font-size: 10px;
-  position: relative;
+  position: fixed;
   text-indent: -9999em;
   border-top: 1.1em solid rgba(61,78,104, 0.2);
   border-right: 1.1em solid rgba(61,78,104, 0.2);
